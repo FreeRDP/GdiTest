@@ -36,7 +36,7 @@ namespace GdiTest
 				System.Drawing.Graphics wg = Gtk.DotNet.Graphics.FromDrawable(this.GdkWindow, true);
 				IntPtr dc = wg.GetHdc();
 				
-				Gdi32._BitBlt(dc, 70, 0, 60, 60, dc, 0, 0, 0xCC0020);
+				Gdi32.BitBlt(dc, 70, 0, 60, 60, dc, 0, 0, Gdi32.SRCCOPY);
 			}
 			return true;
 		}

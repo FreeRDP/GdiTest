@@ -18,7 +18,7 @@ namespace GdiTest
 			box.Add (lineDrawingArea);
 			
 			w.Add (box);
-			w.Resize (500, 500);
+			w.Resize (640, 480);
 			w.ShowAll ();
 			
 			Application.Run ();

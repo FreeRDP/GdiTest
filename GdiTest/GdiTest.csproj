@@ -58,6 +58,7 @@
     <Compile Include="LineDrawingArea.cs" />
     <Compile Include="BitBltDrawingArea.cs" />
     <Compile Include="Gdi32.cs" />
+    <Compile Include="TestData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
