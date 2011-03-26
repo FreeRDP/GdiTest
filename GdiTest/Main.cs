@@ -11,7 +11,7 @@ namespace GdiTest
 			Application.Init ();
 			MainWindow w = new MainWindow ();
 			
-			DrawingArea lineDrawingArea = new LineDrawingArea ();
+			DrawingArea lineDrawingArea = new BitBltDrawingArea ();
 	
 			Box box = new HBox (true, 0);
 			box.Add (lineDrawingArea);

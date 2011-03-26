@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GdiTest/Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GdiTest\MainWindow.cs">
     <Files>
-      <File FileName="GdiTest/Main.cs" Line="37" Column="22" />
-      <File FileName="GdiTest/MainWindow.cs" Line="18" Column="1" />
+      <File FileName="GdiTest\Main.cs" Line="27" Column="1" />
+      <File FileName="GdiTest\MainWindow.cs" Line="18" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
