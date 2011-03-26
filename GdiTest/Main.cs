@@ -8,6 +8,7 @@ namespace GdiTest
 	{
 		public static void Main (string[] args)
 		{
+			Gdi32.init();
 			Application.Init ();
 			MainWindow w = new MainWindow ();
 			
