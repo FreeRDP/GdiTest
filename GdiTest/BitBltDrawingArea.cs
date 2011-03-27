@@ -33,12 +33,14 @@ namespace GdiTest
 				cg.LineTo (110, 110);
 				cg.Stroke ();
 				
-				if (Gdi32.getWin32())
+				Win32Gdi win32Gdi = Win32Gdi.getInstance();
+				
+				if (win32Gdi.isAvailable())
 				{
 					System.Drawing.Graphics wg = Gtk.DotNet.Graphics.FromDrawable(this.GdkWindow, true);
 					IntPtr dc = wg.GetHdc();
 				
-					Gdi32.BitBlt(dc, 70, 0, 60, 60, dc, 0, 0, Gdi32.SRCCOPY);
+					win32Gdi.BitBlt(dc, 70, 0, 60, 60, dc, 0, 0, Gdi.SRCCOPY);
 				}
 			}
 			return true;
