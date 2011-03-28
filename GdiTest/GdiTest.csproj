@@ -58,8 +58,9 @@
     <Compile Include="LineDrawingArea.cs" />
     <Compile Include="BitBltDrawingArea.cs" />
     <Compile Include="TestData.cs" />
-    <Compile Include="Win32Gdi.cs" />
-    <Compile Include="Gdi.cs" />
+    <Compile Include="GDI.cs" />
+    <Compile Include="Win32GDI.cs" />
+    <Compile Include="FreeRDPGDI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

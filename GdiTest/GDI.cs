@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace GdiTest
 {
-	public abstract class Gdi
+	public abstract class GDI
 	{
 		public static System.Int32 SRCCOPY =		0x00CC0020; /* D = S */
 		public static System.Int32 SRCPAINT =		0x00EE0086; /* D = S | D */
@@ -23,7 +23,7 @@ namespace GdiTest
 		public static System.Int32 DSPDxax =		0x00E20746; /* D = (S & P) | (~S & D) */
 		public static System.Int32 SPna =			0x000C0324;	/* D = S & ~P */
 		
-		public Gdi ()
+		public GDI ()
 		{
 		}
 		
