@@ -1,11 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GdiTest/BitBltDrawingArea.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GdiTest/FreeRDPGDI.cs">
     <Files>
-      <File FileName="GdiTest/BitBltDrawingArea.cs" Line="24" Column="18" />
-      <File FileName="GdiTest/Gdi.cs" Line="31" Column="27" />
-      <File FileName="GdiTest/Win32Gdi.cs" Line="45" Column="17" />
-      <File FileName="GdiTest/Main.cs" Line="10" Column="4" />
+      <File FileName="GdiTest/BitBltDrawingArea.cs" Line="49" Column="6" />
+      <File FileName="GdiTest/GDI.cs" Line="26" Column="13" />
+      <File FileName="GdiTest/FreeRDPGDI.cs" Line="49" Column="21" />
+      <File FileName="GdiTest/Win32GDI.cs" Line="6" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

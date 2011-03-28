@@ -3,6 +3,12 @@
 
 public partial class MainWindow
 {
+	private global::Gtk.Fixed mainFixedContainer;
+
+	private global::Gtk.ComboBox testSelectorComboBox;
+
+	private global::Gtk.ScrolledWindow GtkScrolledWindow;
+
 	protected virtual void Build ()
 	{
 		global::Stetic.Gui.Initialize (this);
@@ -10,11 +16,34 @@ public partial class MainWindow
 		this.Name = "MainWindow";
 		this.Title = global::Mono.Unix.Catalog.GetString ("MainWindow");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+		// Container child MainWindow.Gtk.Container+ContainerChild
+		this.mainFixedContainer = new global::Gtk.Fixed ();
+		this.mainFixedContainer.Name = "mainFixedContainer";
+		this.mainFixedContainer.HasWindow = false;
+		// Container child mainFixedContainer.Gtk.Fixed+FixedChild
+		this.testSelectorComboBox = global::Gtk.ComboBox.NewText ();
+		this.testSelectorComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("LineTo()"));
+		this.testSelectorComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("BitBlt()"));
+		this.testSelectorComboBox.Name = "testSelectorComboBox";
+		this.testSelectorComboBox.Active = 0;
+		this.mainFixedContainer.Add (this.testSelectorComboBox);
+		global::Gtk.Fixed.FixedChild w1 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.testSelectorComboBox]));
+		w1.X = 2;
+		w1.Y = 34;
+		// Container child mainFixedContainer.Gtk.Fixed+FixedChild
+		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
+		this.mainFixedContainer.Add (this.GtkScrolledWindow);
+		global::Gtk.Fixed.FixedChild w2 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.GtkScrolledWindow]));
+		w2.X = 2;
+		w2.Y = 367;
+		this.Add (this.mainFixedContainer);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 400;
-		this.DefaultHeight = 300;
+		this.DefaultWidth = 770;
+		this.DefaultHeight = 449;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 	}
