@@ -6,9 +6,9 @@ using GdiTest;
 
 public partial class MainWindow : Gtk.Window
 {
-	DrawingArea testDrawingArea;
-	DrawingArea lineToDrawingArea;
-	DrawingArea bitBltDrawingArea;
+	TestDrawingArea testDrawingArea;
+	TestDrawingArea lineToDrawingArea;
+	TestDrawingArea bitBltDrawingArea;
 	
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
@@ -50,4 +50,11 @@ public partial class MainWindow : Gtk.Window
 			testFrame.ShowAll();
 		}
 	}
+	protected virtual void OnDumpButtonClicked (object sender, System.EventArgs e)
+	{
+		String dumpText = testDrawingArea.dump();
+		dumpTextView.Buffer.Text = dumpText;
+	}
+	
+	
 }

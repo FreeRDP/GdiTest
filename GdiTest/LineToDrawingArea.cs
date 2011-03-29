@@ -4,7 +4,7 @@ using Gtk;
 
 namespace GdiTest
 {
-	public class LineToDrawingArea : DrawingArea
+	public class LineToDrawingArea : TestDrawingArea
 	{
 		public struct Area
 		{
@@ -14,23 +14,26 @@ namespace GdiTest
 			public int H;
 		}
 		
+		private bool rendered;
+		
 		public LineToDrawingArea()
 		{
+			rendered = false;
 		}
 		
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
 		{
 			using (Context g = Gdk.CairoHelper.Create (args.Window))
 			{
-				g.Antialias = Antialias.None;
 				g.LineWidth = 1;
+				g.Antialias = Antialias.None;
 				
 				Win32GDI GDI_Win32 = Win32GDI.getInstance();
 				
 				if (GDI_Win32.isAvailable())
-				{	
+				{					
 					System.Drawing.Graphics wg = Gtk.DotNet.Graphics.FromDrawable(this.GdkWindow, true);
-					IntPtr dc = wg.GetHdc();
+					IntPtr hdc = wg.GetHdc();
 					
 					int i = 0;
 					int n = 10;
@@ -153,22 +156,50 @@ namespace GdiTest
 					
 					for (i = 0; i < n; i++)
 					{
-						/* Fill Area with White */
-						g.Color = new Color(255,255,255);
-						Rectangle rect = new Rectangle(areas[i].X, areas[i].Y, areas[i].W, areas[i].H);
-						g.Rectangle(rect);
-						g.Fill();
-						g.Stroke();
-						
+						if (!rendered)
+						{
+							/* Fill Area with White */
+							g.Color = new Color(255,255,255);
+							Rectangle rect = new Rectangle(areas[i].X, areas[i].Y, areas[i].W, areas[i].H);
+							g.Rectangle(rect);
+							g.Fill();
+							g.Stroke();
+						}
+							
 						/* Render Test Case */
 						IntPtr pen = GDI_Win32.CreatePen(1, 1, 0);
-						IntPtr oldPen = GDI_Win32.SelectObject(dc, pen);
-						GDI_Win32.MoveToEx(dc, startp[i].X, startp[i].Y, IntPtr.Zero);
-						GDI_Win32.LineTo(dc, endp[i].X, endp[i].Y);
+						IntPtr oldPen = GDI_Win32.SelectObject(hdc, pen);
+						GDI_Win32.MoveToEx(hdc, startp[i].X, startp[i].Y, IntPtr.Zero);
+						GDI_Win32.LineTo(hdc, endp[i].X, endp[i].Y);
 					}
 				}
 			}
 			return true;
+		}
+		
+		public override String dump()
+		{
+			String text = "";
+			
+			Win32GDI GDI_Win32 = Win32GDI.getInstance();
+				
+			if (GDI_Win32.isAvailable())
+			{					
+				System.Drawing.Graphics wg = Gtk.DotNet.Graphics.FromDrawable(this.GdkWindow, true);
+				IntPtr hdc = wg.GetHdc();
+				
+				for (int y = 0; y < 16; y++)
+				{
+					for (int x = 0; x < 16; x++)
+					{
+						System.Drawing.Color color = GDI_Win32.GetPixelColor(x, y);
+						text += String.Format("0x{0:X}, ", color.ToArgb());
+					}
+					text += "\n";
+				}
+			}
+				
+			return text;
 		}
 	}
 }

@@ -9,11 +9,15 @@ public partial class MainWindow
 
 	private global::Gtk.ScrolledWindow GtkScrolledWindow;
 
+	private global::Gtk.TextView dumpTextView;
+
 	private global::Gtk.Frame testFrame;
 
 	private global::Gtk.Label drawingAreaLabel;
 
 	private global::Gtk.ComboBox testComboBox;
+
+	private global::Gtk.Button dumpButton;
 
 	protected virtual void Build ()
 	{
@@ -36,18 +40,24 @@ public partial class MainWindow
 		w1.Y = 31;
 		// Container child mainFixedContainer.Gtk.Fixed+FixedChild
 		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
-		this.GtkScrolledWindow.WidthRequest = 600;
-		this.GtkScrolledWindow.HeightRequest = 100;
 		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
+		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+		this.dumpTextView = new global::Gtk.TextView ();
+		this.dumpTextView.WidthRequest = 600;
+		this.dumpTextView.HeightRequest = 200;
+		this.dumpTextView.CanFocus = true;
+		this.dumpTextView.Name = "dumpTextView";
+		this.dumpTextView.Editable = false;
+		this.GtkScrolledWindow.Add (this.dumpTextView);
 		this.mainFixedContainer.Add (this.GtkScrolledWindow);
-		global::Gtk.Fixed.FixedChild w2 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.GtkScrolledWindow]));
-		w2.X = 9;
-		w2.Y = 520;
+		global::Gtk.Fixed.FixedChild w3 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.GtkScrolledWindow]));
+		w3.X = 14;
+		w3.Y = 286;
 		// Container child mainFixedContainer.Gtk.Fixed+FixedChild
 		this.testFrame = new global::Gtk.Frame ();
 		this.testFrame.WidthRequest = 600;
-		this.testFrame.HeightRequest = 400;
+		this.testFrame.HeightRequest = 200;
 		this.testFrame.Name = "testFrame";
 		this.testFrame.ShadowType = ((global::Gtk.ShadowType)(0));
 		this.drawingAreaLabel = new global::Gtk.Label ();
@@ -56,9 +66,9 @@ public partial class MainWindow
 		this.drawingAreaLabel.UseMarkup = true;
 		this.testFrame.LabelWidget = this.drawingAreaLabel;
 		this.mainFixedContainer.Add (this.testFrame);
-		global::Gtk.Fixed.FixedChild w3 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.testFrame]));
-		w3.X = 7;
-		w3.Y = 75;
+		global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.testFrame]));
+		w4.X = 21;
+		w4.Y = 76;
 		// Container child mainFixedContainer.Gtk.Fixed+FixedChild
 		this.testComboBox = global::Gtk.ComboBox.NewText ();
 		this.testComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("LineTo"));
@@ -66,17 +76,28 @@ public partial class MainWindow
 		this.testComboBox.Name = "testComboBox";
 		this.testComboBox.Active = 0;
 		this.mainFixedContainer.Add (this.testComboBox);
-		global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.testComboBox]));
-		w4.X = 70;
-		w4.Y = 18;
+		global::Gtk.Fixed.FixedChild w5 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.testComboBox]));
+		w5.X = 74;
+		w5.Y = 27;
+		// Container child mainFixedContainer.Gtk.Fixed+FixedChild
+		this.dumpButton = new global::Gtk.Button ();
+		this.dumpButton.CanFocus = true;
+		this.dumpButton.Name = "dumpButton";
+		this.dumpButton.UseUnderline = true;
+		this.dumpButton.Label = global::Mono.Unix.Catalog.GetString ("Dump");
+		this.mainFixedContainer.Add (this.dumpButton);
+		global::Gtk.Fixed.FixedChild w6 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.dumpButton]));
+		w6.X = 156;
+		w6.Y = 26;
 		this.Add (this.mainFixedContainer);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 632;
-		this.DefaultHeight = 663;
+		this.DefaultWidth = 664;
+		this.DefaultHeight = 562;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.testComboBox.Changed += new global::System.EventHandler (this.OnTestComboBoxChanged);
+		this.dumpButton.Clicked += new global::System.EventHandler (this.OnDumpButtonClicked);
 	}
 }

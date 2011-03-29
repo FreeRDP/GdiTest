@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace GdiTest
 {
-	public class BitBltDrawingArea : DrawingArea
+	public class BitBltDrawingArea : TestDrawingArea
 	{		
 		public BitBltDrawingArea ()
 		{
@@ -51,6 +51,31 @@ namespace GdiTest
 				}
 			}
 			return true;
+		}
+		
+		public override String dump()
+		{
+			String text = "";
+			
+			Win32GDI GDI_Win32 = Win32GDI.getInstance();
+				
+			if (GDI_Win32.isAvailable())
+			{					
+				System.Drawing.Graphics wg = Gtk.DotNet.Graphics.FromDrawable(this.GdkWindow, true);
+				IntPtr hdc = wg.GetHdc();
+				
+				for (int y = 0; y < 16; y++)
+				{
+					for (int x = 0; x < 16; x++)
+					{
+						System.Drawing.Color color = GDI_Win32.GetPixelColor(x, y);
+						text += String.Format("0x{0:X}, ", color.ToArgb());
+					}
+					text += "\n";
+				}
+			}
+				
+			return text;
 		}
 	}
 }
