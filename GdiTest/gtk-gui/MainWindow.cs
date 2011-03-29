@@ -5,9 +5,15 @@ public partial class MainWindow
 {
 	private global::Gtk.Fixed mainFixedContainer;
 
-	private global::Gtk.ComboBox testSelectorComboBox;
+	private global::Gtk.Label testLabel;
 
 	private global::Gtk.ScrolledWindow GtkScrolledWindow;
+
+	private global::Gtk.Frame testFrame;
+
+	private global::Gtk.Label drawingAreaLabel;
+
+	private global::Gtk.ComboBox testComboBox;
 
 	protected virtual void Build ()
 	{
@@ -21,30 +27,56 @@ public partial class MainWindow
 		this.mainFixedContainer.Name = "mainFixedContainer";
 		this.mainFixedContainer.HasWindow = false;
 		// Container child mainFixedContainer.Gtk.Fixed+FixedChild
-		this.testSelectorComboBox = global::Gtk.ComboBox.NewText ();
-		this.testSelectorComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("LineTo()"));
-		this.testSelectorComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("BitBlt()"));
-		this.testSelectorComboBox.Name = "testSelectorComboBox";
-		this.testSelectorComboBox.Active = 0;
-		this.mainFixedContainer.Add (this.testSelectorComboBox);
-		global::Gtk.Fixed.FixedChild w1 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.testSelectorComboBox]));
-		w1.X = 2;
-		w1.Y = 34;
+		this.testLabel = new global::Gtk.Label ();
+		this.testLabel.Name = "testLabel";
+		this.testLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("Test Suite");
+		this.mainFixedContainer.Add (this.testLabel);
+		global::Gtk.Fixed.FixedChild w1 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.testLabel]));
+		w1.X = 11;
+		w1.Y = 31;
 		// Container child mainFixedContainer.Gtk.Fixed+FixedChild
 		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+		this.GtkScrolledWindow.WidthRequest = 600;
+		this.GtkScrolledWindow.HeightRequest = 100;
 		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
 		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
 		this.mainFixedContainer.Add (this.GtkScrolledWindow);
 		global::Gtk.Fixed.FixedChild w2 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.GtkScrolledWindow]));
-		w2.X = 2;
-		w2.Y = 367;
+		w2.X = 9;
+		w2.Y = 520;
+		// Container child mainFixedContainer.Gtk.Fixed+FixedChild
+		this.testFrame = new global::Gtk.Frame ();
+		this.testFrame.WidthRequest = 600;
+		this.testFrame.HeightRequest = 400;
+		this.testFrame.Name = "testFrame";
+		this.testFrame.ShadowType = ((global::Gtk.ShadowType)(0));
+		this.drawingAreaLabel = new global::Gtk.Label ();
+		this.drawingAreaLabel.Name = "drawingAreaLabel";
+		this.drawingAreaLabel.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Drawing Area</b>");
+		this.drawingAreaLabel.UseMarkup = true;
+		this.testFrame.LabelWidget = this.drawingAreaLabel;
+		this.mainFixedContainer.Add (this.testFrame);
+		global::Gtk.Fixed.FixedChild w3 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.testFrame]));
+		w3.X = 7;
+		w3.Y = 75;
+		// Container child mainFixedContainer.Gtk.Fixed+FixedChild
+		this.testComboBox = global::Gtk.ComboBox.NewText ();
+		this.testComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("LineTo"));
+		this.testComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("BitBlt"));
+		this.testComboBox.Name = "testComboBox";
+		this.testComboBox.Active = 0;
+		this.mainFixedContainer.Add (this.testComboBox);
+		global::Gtk.Fixed.FixedChild w4 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.testComboBox]));
+		w4.X = 70;
+		w4.Y = 18;
 		this.Add (this.mainFixedContainer);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 770;
-		this.DefaultHeight = 449;
+		this.DefaultWidth = 632;
+		this.DefaultHeight = 663;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.testComboBox.Changed += new global::System.EventHandler (this.OnTestComboBoxChanged);
 	}
 }

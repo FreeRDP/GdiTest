@@ -9,7 +9,7 @@ namespace GdiTest
 		static bool initialized = false;
 		static FreeRDPGDI instance = null;
 		
-		public class Callbacks
+		public struct Callbacks
 		{
 			[DllImport("libfreerdpgdi")]
 			public static extern IntPtr GetDC();
@@ -67,6 +67,16 @@ namespace GdiTest
 			return 0;
 		}
 		
+		public override IntPtr SelectObject(IntPtr hdc, IntPtr hgdiobj)
+		{
+			return (IntPtr) null;	
+		}
+		
+		public override bool DeleteObject(IntPtr hObject)
+		{
+			return false;
+		}
+		
 		public override int GetPixel(IntPtr hdc, int X, int Y)
 		{
 			return 0;
@@ -75,6 +85,21 @@ namespace GdiTest
 		public override int SetPixel(IntPtr hdc, int X, int Y, int crColor)
 		{
 			return 0;
+		}
+		
+		public override bool MoveToEx(IntPtr hdc, int X, int Y, IntPtr lpPoint)
+		{
+			return false;
+		}
+		
+		public override bool LineTo(IntPtr hdc, int nXEnd, int nYEnd)
+		{
+			return false;
+		}
+		
+		public override IntPtr CreatePen(int fnPenStyle, int nWidth, int crColor)
+		{
+			return (IntPtr) null;
 		}
 		
 		public override int BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight,

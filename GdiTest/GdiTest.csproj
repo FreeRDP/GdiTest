@@ -55,12 +55,12 @@
     <Compile Include="gtk-gui\MainWindow.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="LineDrawingArea.cs" />
     <Compile Include="BitBltDrawingArea.cs" />
     <Compile Include="TestData.cs" />
     <Compile Include="GDI.cs" />
     <Compile Include="Win32GDI.cs" />
     <Compile Include="FreeRDPGDI.cs" />
+    <Compile Include="LineToDrawingArea.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

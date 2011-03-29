@@ -9,7 +9,7 @@ namespace GdiTest
 		static bool initialized = false;
 		static Win32GDI instance = null;
 		
-		public class Callbacks
+		public struct Callbacks
 		{
 	        [DllImport("user32.dll")]
 	        public static extern IntPtr GetDC(IntPtr hWnd);
@@ -17,11 +17,26 @@ namespace GdiTest
 	        [DllImport("user32.dll")]
 	        public static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
 	        
+			[DllImport("gdi32")]
+			public static extern IntPtr SelectObject(IntPtr hdc, IntPtr hgdiobj);
+
+			[DllImport("gdi32")]
+			public static extern bool DeleteObject(IntPtr hObject);
+			
 			[DllImport("gdi32.dll")]
 	        public static extern int GetPixel(IntPtr hdc, int X, int Y);
 	        
 			[DllImport("gdi32.dll")]
 	        public static extern int SetPixel(IntPtr hdc, int X, int Y, int crColor);
+			
+			[DllImport("gdi32")]
+			public static extern bool MoveToEx(IntPtr hdc, int X, int Y, IntPtr lpPoint);
+			
+			[DllImport("gdi32.dll")]
+	        public static extern bool LineTo(IntPtr hdc, int nXEnd, int nYEnd);
+			
+			[DllImport("gdi32")]
+			public static extern IntPtr CreatePen(int fnPenStyle, int nWidth, int crColor);
 			
 			[DllImport("gdi32.dll")]
 			public static extern int BitBlt(
@@ -85,6 +100,22 @@ namespace GdiTest
 				return 0;
 		}
 		
+		public override IntPtr SelectObject(IntPtr hdc, IntPtr hgdiobj)
+		{
+			if (available)
+				return Callbacks.SelectObject(hdc, hgdiobj);
+			else
+				return (IntPtr) null;	
+		}
+		
+		public override bool DeleteObject(IntPtr hObject)
+		{
+			if (available)
+				return Callbacks.DeleteObject(hObject);
+			else
+				return false;
+		}
+		
 		public override int GetPixel(IntPtr hdc, int X, int Y)
 		{
 			if (available)
@@ -99,6 +130,30 @@ namespace GdiTest
 				return Callbacks.SetPixel(hdc, X, Y, crColor);
 			else
 				return 0;
+		}
+		
+		public override bool MoveToEx(IntPtr hdc, int X, int Y, IntPtr lpPoint)
+		{
+			if (available)
+				return Callbacks.MoveToEx(hdc, X, Y, lpPoint);
+			else
+				return false;
+		}
+		
+		public override bool LineTo(IntPtr hdc, int nXEnd, int nYEnd)
+		{
+			if (available)
+				return Callbacks.LineTo(hdc, nXEnd, nYEnd);
+			else
+				return false;
+		}
+		
+		public override IntPtr CreatePen(int fnPenStyle, int nWidth, int crColor)
+		{
+			if (available)
+				return Callbacks.CreatePen(fnPenStyle, nWidth, crColor);
+			else
+				return (IntPtr) null;
 		}
 		
 		public override int BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight,

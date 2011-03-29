@@ -31,8 +31,13 @@ namespace GdiTest
 		public abstract bool isAvailable();
 		public abstract IntPtr GetDC(IntPtr hWnd);
 		public abstract int ReleaseDC(IntPtr hWnd, IntPtr hDC);
+		public abstract IntPtr SelectObject(IntPtr hdc, IntPtr hgdiobj);
+		public abstract bool DeleteObject(IntPtr hObject);
 		public abstract int GetPixel(IntPtr hdc, int X, int Y);
 		public abstract int SetPixel(IntPtr hdc, int X, int Y, int crColor);
+		public abstract bool MoveToEx(IntPtr hdc, int X, int Y, IntPtr lpPoint);
+		public abstract bool LineTo(IntPtr hdc, int nXEnd, int nYEnd);
+		public abstract IntPtr CreatePen(int fnPenStyle, int nWidth, int crColor);
 		public abstract int BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight,
 		                         IntPtr hdcSrc, int nXSrc, int nYSrc, System.Int32 dwRop);
 	}
