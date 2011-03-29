@@ -33,8 +33,8 @@ namespace GdiTest
 		public abstract int ReleaseDC(IntPtr hWnd, IntPtr hDC);
 		public abstract IntPtr SelectObject(IntPtr hdc, IntPtr hgdiobj);
 		public abstract bool DeleteObject(IntPtr hObject);
-		public abstract uint GetPixel(IntPtr hdc, int X, int Y);
-		public abstract uint SetPixel(IntPtr hdc, int X, int Y, uint crColor);
+		public abstract int GetPixel(IntPtr hdc, int X, int Y);
+		public abstract int SetPixel(IntPtr hdc, int X, int Y, int crColor);
 		public abstract bool MoveToEx(IntPtr hdc, int X, int Y, IntPtr lpPoint);
 		public abstract bool LineTo(IntPtr hdc, int nXEnd, int nYEnd);
 		public abstract IntPtr CreatePen(int fnPenStyle, int nWidth, int crColor);

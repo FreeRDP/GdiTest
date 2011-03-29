@@ -24,10 +24,10 @@ namespace GdiTest
 			public static extern bool DeleteObject(IntPtr hObject);
 			
 			[DllImport("gdi32.dll")]
-	        public static extern uint GetPixel(IntPtr hdc, int X, int Y);
+	        public static extern int GetPixel(IntPtr hdc, int X, int Y);
 	        
 			[DllImport("gdi32.dll")]
-	        public static extern uint SetPixel(IntPtr hdc, int X, int Y, uint crColor);
+	        public static extern int SetPixel(IntPtr hdc, int X, int Y, int crColor);
 			
 			[DllImport("gdi32")]
 			public static extern bool MoveToEx(IntPtr hdc, int X, int Y, IntPtr lpPoint);
@@ -116,7 +116,7 @@ namespace GdiTest
 				return false;
 		}
 		
-		public override uint GetPixel(IntPtr hdc, int X, int Y)
+		public override int GetPixel(IntPtr hdc, int X, int Y)
 		{
 			if (available)
 				return Callbacks.GetPixel(hdc, X, Y);
@@ -124,7 +124,7 @@ namespace GdiTest
 				return 0;
 		}
 		
-		public override uint SetPixel(IntPtr hdc, int X, int Y, uint crColor)
+		public override int SetPixel(IntPtr hdc, int X, int Y, int crColor)
 		{
 			if (available)
 				return Callbacks.SetPixel(hdc, X, Y, crColor);
@@ -134,7 +134,7 @@ namespace GdiTest
 		
 		public System.Drawing.Color GetPixelColor(IntPtr hdc, int X, int Y)
 		{
-			uint pixel = Callbacks.GetPixel(hdc, X, Y);
+			int pixel = Callbacks.GetPixel(hdc, X, Y);
 			System.Drawing.Color color = System.Drawing.Color.FromArgb((int)(pixel & 0x000000FF),
 			                             (int)(pixel & 0x0000FF00) >> 8,
 			                             (int)(pixel & 0x00FF0000) >> 16);

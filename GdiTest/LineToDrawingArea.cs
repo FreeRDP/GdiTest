@@ -172,39 +172,40 @@ namespace GdiTest
 						IntPtr oldPen = GDI_Win32.SelectObject(hdc, pen);
 						GDI_Win32.MoveToEx(hdc, startp[i].X, startp[i].Y, IntPtr.Zero);
 						GDI_Win32.LineTo(hdc, endp[i].X, endp[i].Y);
+					
+						dumpText += "unsigned char line_to_case_" + (i + 1) + "[" + areas[i].W * areas[i].H + "] = \n";
+						dumpText += this.dump(hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
 					}
 				}
 			}
 			
-			dumpText = this.dump();
-			
 			return true;
 		}
 		
-		public override String dump()
+		public String dump(IntPtr hdc, int X, int Y, int W, int H)
 		{
 			String text = "";
 			
 			Win32GDI GDI_Win32 = Win32GDI.getInstance();
 			
 			if (GDI_Win32.isAvailable())
-			{					
-				System.Drawing.Graphics wg = Gtk.DotNet.Graphics.FromDrawable(this.GdkWindow, true);
-				IntPtr hdc = wg.GetHdc();
-				
-				for (int y = 0; y < 16; y++)
+			{
+				text += "{\n";
+				for (int y = Y; y < Y + H; y++)
 				{
-					for (int x = 0; x < 16; x++)
+					text += "\t\"";
+					for (int x = X; x < X + W; x++)
 					{
-						System.Drawing.Color color = GDI_Win32.GetPixelColor(hdc, x, y);
+						int p = GDI_Win32.GetPixel(hdc, x, y);
 						
-						if (color.R == 255)
-							text += "0xFF, ";
+						if (p == 0)
+							text += "\\x00";
 						else
-							text += "0x00, ";
+							text += "\\xFF";
 					}
-					text += "\n";
+					text += "\"\n";
 				}
+				text += "};\n";
 			}
 				
 			return text;

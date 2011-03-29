@@ -77,12 +77,12 @@ namespace GdiTest
 			return false;
 		}
 		
-		public override uint GetPixel(IntPtr hdc, int X, int Y)
+		public override int GetPixel(IntPtr hdc, int X, int Y)
 		{
 			return 0;
 		}
 		
-		public override uint SetPixel(IntPtr hdc, int X, int Y, uint crColor)
+		public override int SetPixel(IntPtr hdc, int X, int Y, int crColor)
 		{
 			return 0;
 		}

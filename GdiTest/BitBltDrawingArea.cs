@@ -26,17 +26,11 @@ namespace GdiTest
 				
 					TestData data = new TestData();
 					
-					for (int i = 0; i < data.bmp_SRC.GetLength(0) / 2; i++)
+					for (int i = 0; i < data.bmp_SRC.GetLength(0); i++)
 					{
-						for (int j = 0; j < data.bmp_SRC.GetLength(1); j++)
+						for (int j = 0; j < data.bmp_SRC.GetLength(1) / 2; j += 2)
 						{
-							uint p = 0;
-							
-							if (data.bmp_SRC[i, j] == 0)
-								p = 0;
-							else
-								p = 0xFFFFFFFF;
-							
+							int p = 0;
 							GDI_Win32.SetPixel(hdc, i, j, p);
 						}
 					}
@@ -47,7 +41,7 @@ namespace GdiTest
 			return true;
 		}
 		
-		public override String dump()
+		public String dump()
 		{
 			String text = "";
 			
