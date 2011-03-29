@@ -52,7 +52,7 @@ public partial class MainWindow : Gtk.Window
 	}
 	protected virtual void OnDumpButtonClicked (object sender, System.EventArgs e)
 	{
-		String dumpText = testDrawingArea.dump();
+		String dumpText = testDrawingArea.getDumpText();
 		dumpTextView.Buffer.Text = dumpText;
 	}
 	

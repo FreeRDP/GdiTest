@@ -15,6 +15,7 @@ namespace GdiTest
 		}
 		
 		private bool rendered;
+		private String dumpText;
 		
 		public LineToDrawingArea()
 		{
@@ -174,6 +175,9 @@ namespace GdiTest
 					}
 				}
 			}
+			
+			dumpText = this.dump();
+			
 			return true;
 		}
 		
@@ -182,7 +186,7 @@ namespace GdiTest
 			String text = "";
 			
 			Win32GDI GDI_Win32 = Win32GDI.getInstance();
-				
+			
 			if (GDI_Win32.isAvailable())
 			{					
 				System.Drawing.Graphics wg = Gtk.DotNet.Graphics.FromDrawable(this.GdkWindow, true);
@@ -192,14 +196,23 @@ namespace GdiTest
 				{
 					for (int x = 0; x < 16; x++)
 					{
-						System.Drawing.Color color = GDI_Win32.GetPixelColor(x, y);
-						text += String.Format("0x{0:X}, ", color.ToArgb());
+						System.Drawing.Color color = GDI_Win32.GetPixelColor(hdc, x, y);
+						
+						if (color.R == 255)
+							text += "0xFF, ";
+						else
+							text += "0x00, ";
 					}
 					text += "\n";
 				}
 			}
 				
 			return text;
+		}
+		
+		public override String getDumpText()
+		{
+			return dumpText;
 		}
 	}
 }

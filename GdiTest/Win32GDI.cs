@@ -132,11 +132,9 @@ namespace GdiTest
 				return 0;
 		}
 		
-		public System.Drawing.Color GetPixelColor(int x, int y)
+		public System.Drawing.Color GetPixelColor(IntPtr hdc, int X, int Y)
 		{
-			IntPtr hdc = GetDC(IntPtr.Zero);
-			uint pixel = Callbacks.GetPixel(hdc, x, y);
-			ReleaseDC(IntPtr.Zero, hdc);
+			uint pixel = Callbacks.GetPixel(hdc, X, Y);
 			System.Drawing.Color color = System.Drawing.Color.FromArgb((int)(pixel & 0x000000FF),
 			                             (int)(pixel & 0x0000FF00) >> 8,
 			                             (int)(pixel & 0x00FF0000) >> 16);

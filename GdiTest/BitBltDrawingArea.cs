@@ -6,7 +6,9 @@ using System.Drawing;
 namespace GdiTest
 {
 	public class BitBltDrawingArea : TestDrawingArea
-	{		
+	{
+		String dumpText;
+		
 		public BitBltDrawingArea ()
 		{
 		}
@@ -60,7 +62,7 @@ namespace GdiTest
 				{
 					for (int x = 0; x < 16; x++)
 					{
-						System.Drawing.Color color = GDI_Win32.GetPixelColor(x, y);
+						System.Drawing.Color color = GDI_Win32.GetPixelColor(hdc, x, y);
 						text += String.Format("0x{0:X}, ", color.ToArgb());
 					}
 					text += "\n";
@@ -68,6 +70,11 @@ namespace GdiTest
 			}
 				
 			return text;
+		}
+		
+		public override String getDumpText ()
+		{
+			return dumpText;
 		}
 	}
 }

@@ -11,6 +11,7 @@ namespace GdiTest
 		}
 		
 		abstract public String dump();
+		abstract public String getDumpText();
 	}
 }
 
