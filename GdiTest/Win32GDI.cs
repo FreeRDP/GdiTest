@@ -27,7 +27,7 @@ namespace GdiTest
 	        public static extern uint GetPixel(IntPtr hdc, int X, int Y);
 	        
 			[DllImport("gdi32.dll")]
-	        public static extern uint SetPixel(IntPtr hdc, int X, int Y, int crColor);
+	        public static extern uint SetPixel(IntPtr hdc, int X, int Y, uint crColor);
 			
 			[DllImport("gdi32")]
 			public static extern bool MoveToEx(IntPtr hdc, int X, int Y, IntPtr lpPoint);
@@ -124,7 +124,7 @@ namespace GdiTest
 				return 0;
 		}
 		
-		public override uint SetPixel(IntPtr hdc, int X, int Y, int crColor)
+		public override uint SetPixel(IntPtr hdc, int X, int Y, uint crColor)
 		{
 			if (available)
 				return Callbacks.SetPixel(hdc, X, Y, crColor);
