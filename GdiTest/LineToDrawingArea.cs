@@ -5,15 +5,7 @@ using Gtk;
 namespace GdiTest
 {
 	public class LineToDrawingArea : TestDrawingArea
-	{
-		public struct Area
-		{
-			public int X;
-			public int Y;
-			public int W;
-			public int H;
-		}
-		
+	{		
 		private bool rendered;
 		private String dumpText;
 		

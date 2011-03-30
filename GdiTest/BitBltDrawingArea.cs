@@ -7,10 +7,17 @@ namespace GdiTest
 {
 	public class BitBltDrawingArea : TestDrawingArea
 	{
+		Bitmap bmp_SRC;
+		Bitmap bmp_DST;
+		Bitmap bmp_PAT;
 		String dumpText;
 		
 		public BitBltDrawingArea ()
 		{
+			String cwd = Environment.CurrentDirectory;
+			bmp_SRC = new Bitmap(cwd + "\\..\\..\\resources\\bmp_SRC.bmp");
+			bmp_DST = new Bitmap(cwd + "\\..\\..\\resources\\bmp_DST.bmp");
+			bmp_PAT = new Bitmap(cwd + "\\..\\..\\resources\\bmp_PAT.bmp");
 		}
 		
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
@@ -23,17 +30,19 @@ namespace GdiTest
 				{
 					System.Drawing.Graphics wg = Gtk.DotNet.Graphics.FromDrawable(this.GdkWindow, true);
 					IntPtr hdc = wg.GetHdc();
-				
-					TestData data = new TestData();
 					
-					for (int i = 0; i < data.bmp_SRC.GetLength(0); i++)
-					{
-						for (int j = 0; j < data.bmp_SRC.GetLength(1) / 2; j += 2)
-						{
-							int p = 0;
-							GDI_Win32.SetPixel(hdc, i, j, p);
-						}
-					}
+					drawBitmap(hdc, 0, 0, bmp_SRC);
+					drawBitmap(hdc, 16, 0, bmp_DST);
+					drawBitmap(hdc, 32, 0, bmp_PAT);
+					
+					dumpText += "unsigned char bmp_SRC[" + bmp_SRC.Width * bmp_SRC.Height + "] = \n";
+					dumpText += this.dump(hdc, 0, 0, bmp_SRC.Width, bmp_SRC.Height) + "\n";
+					
+					dumpText += "unsigned char bmp_DST[" + bmp_DST.Width * bmp_DST.Height + "] = \n";
+					dumpText += this.dump(hdc, 16, 0, bmp_DST.Width, bmp_DST.Height) + "\n";
+					
+					dumpText += "unsigned char bmp_PAT[" + bmp_PAT.Width * bmp_PAT.Height + "] = \n";
+					dumpText += this.dump(hdc, 32, 0, bmp_PAT.Width, bmp_PAT.Height) + "\n";
 					
 					//GDI_Win32.BitBlt(dc, 70, 0, 60, 60, dc, 0, 0, GDI.SRCCOPY);
 				}
@@ -41,26 +50,51 @@ namespace GdiTest
 			return true;
 		}
 		
-		public String dump()
+		public void drawBitmap(IntPtr hdc, int X, int Y, Bitmap bmp)
+		{
+			Win32GDI GDI_Win32 = Win32GDI.getInstance();
+			
+			for (int y = Y; y < Y + bmp.Height; y++)
+			{
+				for (int x = X; x < X + bmp.Width; x++)
+				{
+					int p = 0;
+					System.Drawing.Color pixel = bmp.GetPixel(x - X, y - Y);
+							
+					if (pixel.R == 0 && pixel.G == 0 && pixel.B == 0)
+						p = 0;
+					else
+						p = 0xFFFFFF;
+							
+					GDI_Win32.SetPixel(hdc, x, y, p);
+				}
+			}
+		}
+		
+		public String dump(IntPtr hdc, int X, int Y, int W, int H)
 		{
 			String text = "";
 			
 			Win32GDI GDI_Win32 = Win32GDI.getInstance();
-				
+			
 			if (GDI_Win32.isAvailable())
-			{					
-				System.Drawing.Graphics wg = Gtk.DotNet.Graphics.FromDrawable(this.GdkWindow, true);
-				IntPtr hdc = wg.GetHdc();
-				
-				for (int y = 0; y < 16; y++)
+			{
+				text += "{\n";
+				for (int y = Y; y < Y + H; y++)
 				{
-					for (int x = 0; x < 16; x++)
+					text += "\t\"";
+					for (int x = X; x < X + W; x++)
 					{
-						System.Drawing.Color color = GDI_Win32.GetPixelColor(hdc, x, y);
-						text += String.Format("0x{0:X}, ", color.ToArgb());
+						int p = GDI_Win32.GetPixel(hdc, x, y);
+						
+						if (p == 0)
+							text += "\\x00";
+						else
+							text += "\\xFF";
 					}
-					text += "\n";
+					text += "\"\n";
 				}
+				text += "};\n";
 			}
 				
 			return text;

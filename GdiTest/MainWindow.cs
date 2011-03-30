@@ -33,6 +33,7 @@ public partial class MainWindow : Gtk.Window
 		{
 			testFrame.Remove(testDrawingArea);
 			testDrawingArea = null;
+			dumpTextView.Buffer.Text = "";
 		}
 		
 		String testSuiteName = testComboBox.ActiveText;
