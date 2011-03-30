@@ -7,18 +7,22 @@ using GdiTest;
 public partial class MainWindow : Gtk.Window
 {
 	TestDrawingArea testDrawingArea;
-	TestDrawingArea lineToDrawingArea;
 	TestDrawingArea bitBltDrawingArea;
 	TestDrawingArea ellipseDrawingArea;
+	TestDrawingArea polygonDrawingArea;
+	TestDrawingArea lineToDrawingArea;
+	TestDrawingArea polylineToDrawingArea;
 	
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
-		Build ();
-		lineToDrawingArea = new LineToDrawingArea();
+		Build();
 		bitBltDrawingArea = new BitBltDrawingArea();
 		ellipseDrawingArea = new EllipseDrawingArea();
+		polygonDrawingArea = new PolygonDrawingArea();
+		lineToDrawingArea = new LineToDrawingArea();
+		polylineToDrawingArea = new PolylineToDrawingArea();
 		
-		testDrawingArea = lineToDrawingArea;
+		testDrawingArea = bitBltDrawingArea;
 		testFrame.Add(testDrawingArea);
 		testFrame.ShowAll();
 	}
@@ -40,21 +44,19 @@ public partial class MainWindow : Gtk.Window
 		
 		String testSuiteName = testComboBox.ActiveText;
 		
-		if (testSuiteName.Equals("LineTo"))
-		{
-			testDrawingArea = lineToDrawingArea;
-			testFrame.Add(testDrawingArea);
-			testFrame.ShowAll();
-		}
-		else if (testSuiteName.Equals("BitBlt"))
-		{
+		if (testSuiteName.Equals("BitBlt"))
 			testDrawingArea = bitBltDrawingArea;
-			testFrame.Add(testDrawingArea);
-			testFrame.ShowAll();
-		}
 		else if (testSuiteName.Equals("Ellipse"))
-		{
 			testDrawingArea = ellipseDrawingArea;
+		else if (testSuiteName.Equals("Polygon"))
+			testDrawingArea = polygonDrawingArea;
+		else if (testSuiteName.Equals("LineTo"))
+			testDrawingArea = lineToDrawingArea;
+		else if (testSuiteName.Equals("PolylineTo"))
+			testDrawingArea = polylineToDrawingArea;
+		
+		if (testDrawingArea != null)
+		{
 			testFrame.Add(testDrawingArea);
 			testFrame.ShowAll();
 		}

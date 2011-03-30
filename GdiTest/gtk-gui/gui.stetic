@@ -18,16 +18,6 @@
         <property name="MemberName" />
         <property name="HasWindow">False</property>
         <child>
-          <widget class="Gtk.Label" id="testLabel">
-            <property name="MemberName" />
-            <property name="LabelProp" translatable="yes">Test Suite</property>
-          </widget>
-          <packing>
-            <property name="X">11</property>
-            <property name="Y">31</property>
-          </packing>
-        </child>
-        <child>
           <placeholder />
         </child>
         <child>
@@ -89,18 +79,30 @@
           </packing>
         </child>
         <child>
+          <widget class="Gtk.Label" id="testLabel">
+            <property name="MemberName" />
+            <property name="LabelProp" translatable="yes">Test Suite</property>
+          </widget>
+          <packing>
+            <property name="X">24</property>
+            <property name="Y">30</property>
+          </packing>
+        </child>
+        <child>
           <widget class="Gtk.ComboBox" id="testComboBox">
             <property name="MemberName" />
             <property name="IsTextCombo">True</property>
-            <property name="Items" translatable="yes">LineTo
-BitBlt
-Ellipse</property>
+            <property name="Items" translatable="yes">BitBlt
+LineTo
+PolylineTo
+Ellipse
+Polygon</property>
             <property name="Active">0</property>
             <signal name="Changed" handler="OnTestComboBoxChanged" />
           </widget>
           <packing>
-            <property name="X">74</property>
-            <property name="Y">27</property>
+            <property name="X">79</property>
+            <property name="Y">26</property>
           </packing>
         </child>
         <child>
@@ -113,8 +115,8 @@ Ellipse</property>
             <signal name="Clicked" handler="OnDumpButtonClicked" />
           </widget>
           <packing>
-            <property name="X">156</property>
-            <property name="Y">26</property>
+            <property name="X">174</property>
+            <property name="Y">23</property>
           </packing>
         </child>
       </widget>

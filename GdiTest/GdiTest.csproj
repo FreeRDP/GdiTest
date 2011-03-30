@@ -62,6 +62,8 @@
     <Compile Include="LineToDrawingArea.cs" />
     <Compile Include="TestDrawingArea.cs" />
     <Compile Include="EllipseDrawingArea.cs" />
+    <Compile Include="PolylineToDrawingArea.cs" />
+    <Compile Include="PolygonDrawingArea.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

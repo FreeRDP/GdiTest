@@ -97,6 +97,11 @@ namespace GdiTest
 			return false;
 		}
 		
+		public override bool PolylineTo(IntPtr hdc, POINT [] lppt, uint cCount)
+		{
+			return false;
+		}
+		
 		public override IntPtr CreatePen(int fnPenStyle, int nWidth, int crColor)
 		{
 			return (IntPtr) null;

@@ -23,17 +23,20 @@ namespace GdiTest
 			[DllImport("gdi32")]
 			public static extern bool DeleteObject(IntPtr hObject);
 			
-			[DllImport("gdi32.dll")]
+			[DllImport("gdi32")]
 	        public static extern int GetPixel(IntPtr hdc, int X, int Y);
 	        
-			[DllImport("gdi32.dll")]
+			[DllImport("gdi32")]
 	        public static extern int SetPixel(IntPtr hdc, int X, int Y, int crColor);
 			
 			[DllImport("gdi32")]
 			public static extern bool MoveToEx(IntPtr hdc, int X, int Y, IntPtr lpPoint);
 			
-			[DllImport("gdi32.dll")]
+			[DllImport("gdi32")]
 	        public static extern bool LineTo(IntPtr hdc, int nXEnd, int nYEnd);
+			
+			[DllImport("gdi32")]
+			public static extern bool PolylineTo(IntPtr hdc, POINT [] lppt, uint cCount);
 			
 			[DllImport("gdi32")]
 			public static extern IntPtr CreatePen(int fnPenStyle, int nWidth, int crColor);
@@ -44,7 +47,10 @@ namespace GdiTest
 			[DllImport("gdi32")]
 			public static extern bool Ellipse(IntPtr hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
 			
-			[DllImport("gdi32.dll")]
+			[DllImport("gdi32")]
+			public static extern bool Polygon(IntPtr hdc, POINT [] lpPoints, int nCount);
+			
+			[DllImport("gdi32")]
 			public static extern int BitBlt(
 			                                 IntPtr hdcDest,
 			                                 int nXDest,
@@ -159,6 +165,14 @@ namespace GdiTest
 		{
 			if (available)
 				return Callbacks.LineTo(hdc, nXEnd, nYEnd);
+			else
+				return false;
+		}
+		
+		public override bool PolylineTo(IntPtr hdc, POINT [] lppt, uint cCount)
+		{
+			if (available)
+				return Callbacks.PolylineTo(hdc, lppt, cCount);
 			else
 				return false;
 		}

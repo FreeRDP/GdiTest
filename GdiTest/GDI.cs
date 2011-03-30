@@ -5,6 +5,29 @@ namespace GdiTest
 {
 	public abstract class GDI
 	{
+		[StructLayout(LayoutKind.Sequential)]
+		public struct POINT
+		{
+			public int X;
+			public int Y;
+
+			public POINT(int x, int y)
+			{
+				this.X = x;
+				this.Y = y;
+			}
+
+			public static implicit operator System.Drawing.Point(POINT p)
+			{
+				return new System.Drawing.Point(p.X, p.Y);
+			}
+
+			public static implicit operator POINT(System.Drawing.Point p)
+			{
+				return new POINT(p.X, p.Y);
+			}
+		}
+		
 		public static System.Int32 SRCCOPY =		0x00CC0020; /* D = S */
 		public static System.Int32 SRCPAINT =		0x00EE0086; /* D = S | D */
 		public static System.Int32 SRCAND =			0x008800C6; /* D = S & D */
@@ -37,6 +60,7 @@ namespace GdiTest
 		public abstract int SetPixel(IntPtr hdc, int X, int Y, int crColor);
 		public abstract bool MoveToEx(IntPtr hdc, int X, int Y, IntPtr lpPoint);
 		public abstract bool LineTo(IntPtr hdc, int nXEnd, int nYEnd);
+		public abstract bool PolylineTo(IntPtr hdc, POINT [] lppt, uint cCount);
 		public abstract IntPtr CreatePen(int fnPenStyle, int nWidth, int crColor);
 		public abstract IntPtr CreateSolidBrush(int crColor);
 		public abstract bool Ellipse(IntPtr hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
