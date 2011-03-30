@@ -36,13 +36,13 @@ namespace GdiTest
 					drawBitmap(hdc, 32, 0, bmp_PAT);
 					
 					dumpText += "unsigned char bmp_SRC[" + bmp_SRC.Width * bmp_SRC.Height + "] = \n";
-					dumpText += this.dump(hdc, 0, 0, bmp_SRC.Width, bmp_SRC.Height) + "\n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, 0, 0, bmp_SRC.Width, bmp_SRC.Height) + "\n";
 					
 					dumpText += "unsigned char bmp_DST[" + bmp_DST.Width * bmp_DST.Height + "] = \n";
-					dumpText += this.dump(hdc, 16, 0, bmp_DST.Width, bmp_DST.Height) + "\n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, 16, 0, bmp_DST.Width, bmp_DST.Height) + "\n";
 					
 					dumpText += "unsigned char bmp_PAT[" + bmp_PAT.Width * bmp_PAT.Height + "] = \n";
-					dumpText += this.dump(hdc, 32, 0, bmp_PAT.Width, bmp_PAT.Height) + "\n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, 32, 0, bmp_PAT.Width, bmp_PAT.Height) + "\n";
 					
 					//GDI_Win32.BitBlt(dc, 70, 0, 60, 60, dc, 0, 0, GDI.SRCCOPY);
 				}
@@ -69,35 +69,6 @@ namespace GdiTest
 					GDI_Win32.SetPixel(hdc, x, y, p);
 				}
 			}
-		}
-		
-		public String dump(IntPtr hdc, int X, int Y, int W, int H)
-		{
-			String text = "";
-			
-			Win32GDI GDI_Win32 = Win32GDI.getInstance();
-			
-			if (GDI_Win32.isAvailable())
-			{
-				text += "{\n";
-				for (int y = Y; y < Y + H; y++)
-				{
-					text += "\t\"";
-					for (int x = X; x < X + W; x++)
-					{
-						int p = GDI_Win32.GetPixel(hdc, x, y);
-						
-						if (p == 0)
-							text += "\\x00";
-						else
-							text += "\\xFF";
-					}
-					text += "\"\n";
-				}
-				text += "};\n";
-			}
-				
-			return text;
 		}
 		
 		public override String getDumpText ()

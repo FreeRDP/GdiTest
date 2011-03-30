@@ -166,41 +166,12 @@ namespace GdiTest
 						GDI_Win32.LineTo(hdc, endp[i].X, endp[i].Y);
 					
 						dumpText += "unsigned char line_to_case_" + (i + 1) + "[" + areas[i].W * areas[i].H + "] = \n";
-						dumpText += this.dump(hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
+						dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
 					}
 				}
 			}
 			
 			return true;
-		}
-		
-		public String dump(IntPtr hdc, int X, int Y, int W, int H)
-		{
-			String text = "";
-			
-			Win32GDI GDI_Win32 = Win32GDI.getInstance();
-			
-			if (GDI_Win32.isAvailable())
-			{
-				text += "{\n";
-				for (int y = Y; y < Y + H; y++)
-				{
-					text += "\t\"";
-					for (int x = X; x < X + W; x++)
-					{
-						int p = GDI_Win32.GetPixel(hdc, x, y);
-						
-						if (p == 0)
-							text += "\\x00";
-						else
-							text += "\\xFF";
-					}
-					text += "\"\n";
-				}
-				text += "};\n";
-			}
-				
-			return text;
 		}
 		
 		public override String getDumpText()

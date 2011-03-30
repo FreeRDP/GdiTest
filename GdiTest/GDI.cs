@@ -38,6 +38,8 @@ namespace GdiTest
 		public abstract bool MoveToEx(IntPtr hdc, int X, int Y, IntPtr lpPoint);
 		public abstract bool LineTo(IntPtr hdc, int nXEnd, int nYEnd);
 		public abstract IntPtr CreatePen(int fnPenStyle, int nWidth, int crColor);
+		public abstract IntPtr CreateSolidBrush(int crColor);
+		public abstract bool Ellipse(IntPtr hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
 		public abstract int BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight,
 		                         IntPtr hdcSrc, int nXSrc, int nYSrc, System.Int32 dwRop);
 	}

@@ -73,6 +73,7 @@ public partial class MainWindow
 		this.testComboBox = global::Gtk.ComboBox.NewText ();
 		this.testComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("LineTo"));
 		this.testComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("BitBlt"));
+		this.testComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("Ellipse"));
 		this.testComboBox.Name = "testComboBox";
 		this.testComboBox.Active = 0;
 		this.mainFixedContainer.Add (this.testComboBox);

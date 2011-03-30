@@ -102,6 +102,16 @@ namespace GdiTest
 			return (IntPtr) null;
 		}
 		
+		public override IntPtr CreateSolidBrush(int crColor)
+		{
+			return (IntPtr) null;
+		}
+		
+		public override bool Ellipse(IntPtr hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect)
+		{
+			return false;
+		}
+		
 		public override int BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight,
 		                                 IntPtr hdcSrc, int nXSrc, int nYSrc, System.Int32 dwRop)
 		{

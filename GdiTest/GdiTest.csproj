@@ -61,6 +61,7 @@
     <Compile Include="FreeRDPGDI.cs" />
     <Compile Include="LineToDrawingArea.cs" />
     <Compile Include="TestDrawingArea.cs" />
+    <Compile Include="EllipseDrawingArea.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

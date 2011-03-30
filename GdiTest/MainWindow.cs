@@ -9,12 +9,14 @@ public partial class MainWindow : Gtk.Window
 	TestDrawingArea testDrawingArea;
 	TestDrawingArea lineToDrawingArea;
 	TestDrawingArea bitBltDrawingArea;
+	TestDrawingArea ellipseDrawingArea;
 	
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
 		Build ();
-		lineToDrawingArea = new LineToDrawingArea ();
-		bitBltDrawingArea = new BitBltDrawingArea ();
+		lineToDrawingArea = new LineToDrawingArea();
+		bitBltDrawingArea = new BitBltDrawingArea();
+		ellipseDrawingArea = new EllipseDrawingArea();
 		
 		testDrawingArea = lineToDrawingArea;
 		testFrame.Add(testDrawingArea);
@@ -23,7 +25,7 @@ public partial class MainWindow : Gtk.Window
 
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
-		Application.Quit ();
+		Application.Quit();
 		a.RetVal = true;
 	}
 	
@@ -47,6 +49,12 @@ public partial class MainWindow : Gtk.Window
 		else if (testSuiteName.Equals("BitBlt"))
 		{
 			testDrawingArea = bitBltDrawingArea;
+			testFrame.Add(testDrawingArea);
+			testFrame.ShowAll();
+		}
+		else if (testSuiteName.Equals("Ellipse"))
+		{
+			testDrawingArea = ellipseDrawingArea;
 			testFrame.Add(testDrawingArea);
 			testFrame.ShowAll();
 		}

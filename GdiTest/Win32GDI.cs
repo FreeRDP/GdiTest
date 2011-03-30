@@ -38,6 +38,12 @@ namespace GdiTest
 			[DllImport("gdi32")]
 			public static extern IntPtr CreatePen(int fnPenStyle, int nWidth, int crColor);
 			
+			[DllImport("gdi32")]
+			public static extern IntPtr CreateSolidBrush(int crColor);
+			
+			[DllImport("gdi32")]
+			public static extern bool Ellipse(IntPtr hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
+			
 			[DllImport("gdi32.dll")]
 			public static extern int BitBlt(
 			                                 IntPtr hdcDest,
@@ -161,6 +167,22 @@ namespace GdiTest
 		{
 			if (available)
 				return Callbacks.CreatePen(fnPenStyle, nWidth, crColor);
+			else
+				return (IntPtr) null;
+		}
+		
+		public override bool Ellipse(IntPtr hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect)
+		{
+			if (available)
+				return Callbacks.Ellipse(hdc, nLeftRect, nTopRect, nRightRect, nBottomRect);
+			else
+				return false;
+		}
+		
+		public override IntPtr CreateSolidBrush(int crColor)
+		{
+			if (available)
+				return Callbacks.CreateSolidBrush(crColor);
 			else
 				return (IntPtr) null;
 		}
