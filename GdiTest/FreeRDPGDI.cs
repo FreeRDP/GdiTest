@@ -112,6 +112,16 @@ namespace GdiTest
 			return (IntPtr) null;
 		}
 		
+		public override IntPtr CreatePatternBrush(IntPtr hbmp)
+		{
+			return (IntPtr) null;
+		}
+		
+		public override IntPtr CreateBitmap(int nWidth, int nHeight, uint cPlanes, uint cBitsPerPel, IntPtr lpvBits)
+		{
+			return (IntPtr) null;
+		}
+		
 		public override bool Ellipse(IntPtr hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect)
 		{
 			return false;

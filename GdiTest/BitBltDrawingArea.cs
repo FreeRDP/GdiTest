@@ -63,8 +63,11 @@ namespace GdiTest
 					dumpText += "unsigned char bmp_PAT[" + bmp_PAT.Width * bmp_PAT.Height + "] = \n";
 					dumpText += dumpPixelArea(GDI_Win32, hdc, aPat.X, aPat.Y, bmp_PAT.Width, bmp_PAT.Height) + "\n";
 					
+					IntPtr hBrushOld;
+					IntPtr hBrush = GDI_Win32.CreatePatternBrush(bmp_PAT.GetHbitmap());
+					
 					int i = 0;
-					int n = 11;
+					int n = 16;
 					int w = 16;
 					int h = 16;
 					
@@ -84,6 +87,8 @@ namespace GdiTest
 					areas[i].H = h;
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.SRCCOPY);
+					dumpText += "unsigned char bmp_SRCCOPY[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
 					i++;
 					
 					/* Test Case 2: BLACKNESS */
@@ -93,6 +98,8 @@ namespace GdiTest
 					areas[i].H = h;
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.BLACKNESS);
+					dumpText += "unsigned char bmp_BLACKNESS[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
 					i++;
 					
 					/* Test Case 3: WHITENESS */
@@ -102,6 +109,8 @@ namespace GdiTest
 					areas[i].H = h;
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.WHITENESS);
+					dumpText += "unsigned char bmp_WHITENESS[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
 					i++;
 					
 					/* Test Case 4: SRCAND */
@@ -111,6 +120,8 @@ namespace GdiTest
 					areas[i].H = h;
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.SRCAND);
+					dumpText += "unsigned char bmp_SRCAND[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
 					i++;
 					
 					/* Test Case 5: SRCPAINT */
@@ -120,6 +131,8 @@ namespace GdiTest
 					areas[i].H = h;
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.SRCPAINT);
+					dumpText += "unsigned char bmp_SRCPAINT[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
 					i++;
 					
 					/* Test Case 6: SRCINVERT */
@@ -129,6 +142,8 @@ namespace GdiTest
 					areas[i].H = h;
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.SRCINVERT);
+					dumpText += "unsigned char bmp_SRCINVERT[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
 					i++;
 					
 					/* Test Case 7: SRCERASE */
@@ -138,6 +153,8 @@ namespace GdiTest
 					areas[i].H = h;
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.SRCERASE);
+					dumpText += "unsigned char bmp_SRCERASE[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
 					i++;
 					
 					/* Test Case 8: NOTSRCCOPY */
@@ -147,6 +164,8 @@ namespace GdiTest
 					areas[i].H = h;
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.NOTSRCCOPY);
+					dumpText += "unsigned char bmp_NOTSRCCOPY[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
 					i++;
 					
 					/* Test Case 9: NOTSRCERASE */
@@ -156,6 +175,8 @@ namespace GdiTest
 					areas[i].H = h;
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.NOTSRCERASE);
+					dumpText += "unsigned char bmp_NOTSRCERASE[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
 					i++;
 					
 					/* Test Case 10: DSTINVERT */
@@ -163,8 +184,11 @@ namespace GdiTest
 					areas[i].Y = 32;
 					areas[i].W = w;
 					areas[i].H = h;
+					hBrushOld = GDI_Win32.SelectObject(hdc, hBrush);
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.DSTINVERT);
+					dumpText += "unsigned char bmp_DSTINVERT[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
 					i++;
 					
 					/* Test Case 11: SPna */
@@ -172,8 +196,71 @@ namespace GdiTest
 					areas[i].Y = 32;
 					areas[i].W = w;
 					areas[i].H = h;
+					hBrushOld = GDI_Win32.SelectObject(hdc, hBrush);
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
 					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.SPna);
+					dumpText += "unsigned char bmp_SPna[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
+					i++;
+					
+					/* Test Case 12: MERGEPAINT */
+					areas[i].X = areas[i - 1].X + w;
+					areas[i].Y = 32;
+					areas[i].W = w;
+					areas[i].H = h;
+					hBrushOld = GDI_Win32.SelectObject(hdc, hBrush);
+					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
+					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.MERGEPAINT);
+					dumpText += "unsigned char bmp_MERGEPAINT[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
+					i++;
+					
+					/* Test Case 13: MERGECOPY */
+					areas[i].X = areas[i - 1].X + w;
+					areas[i].Y = 32;
+					areas[i].W = w;
+					areas[i].H = h;
+					hBrushOld = GDI_Win32.SelectObject(hdc, hBrush);
+					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
+					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.MERGECOPY);
+					dumpText += "unsigned char bmp_MERGECOPY[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
+					i++;
+					
+					/* Test Case 14: PATPAINT */
+					areas[i].X = areas[i - 1].X + w;
+					areas[i].Y = 32;
+					areas[i].W = w;
+					areas[i].H = h;
+					hBrushOld = GDI_Win32.SelectObject(hdc, hBrush);
+					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
+					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.PATPAINT);
+					dumpText += "unsigned char bmp_PATPAINT[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
+					i++;
+					
+					/* Test Case 15: PATCOPY */
+					areas[i].X = areas[i - 1].X + w;
+					areas[i].Y = 32;
+					areas[i].W = w;
+					areas[i].H = h;
+					hBrushOld = GDI_Win32.SelectObject(hdc, hBrush);
+					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
+					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.PATCOPY);
+					dumpText += "unsigned char bmp_PATCOPY[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
+					i++;
+					
+					/* Test Case 16: PATINVERT */
+					areas[i].X = areas[i - 1].X + w;
+					areas[i].Y = 32;
+					areas[i].W = w;
+					areas[i].H = h;
+					hBrushOld = GDI_Win32.SelectObject(hdc, hBrush);
+					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aDst.X, aDst.Y, GDI.SRCCOPY);
+					GDI_Win32.BitBlt(hdc, areas[i].X, areas[i].Y, aSrc.W, aSrc.H, hdc, aSrc.X, aSrc.Y, GDI.PATINVERT);
+					dumpText += "unsigned char bmp_PATINVERT[" + areas[i].W * areas[i].H + "] = \n";
+					dumpText += dumpPixelArea(GDI_Win32, hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H) + "\n";
 					i++;
 				}
 			}

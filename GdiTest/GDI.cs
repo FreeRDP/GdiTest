@@ -63,6 +63,8 @@ namespace GdiTest
 		public abstract bool PolylineTo(IntPtr hdc, POINT [] lppt, uint cCount);
 		public abstract IntPtr CreatePen(int fnPenStyle, int nWidth, int crColor);
 		public abstract IntPtr CreateSolidBrush(int crColor);
+		public abstract IntPtr CreatePatternBrush(IntPtr hbmp);
+		public abstract IntPtr CreateBitmap(int nWidth, int nHeight, uint cPlanes, uint cBitsPerPel, IntPtr lpvBits);
 		public abstract bool Ellipse(IntPtr hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
 		public abstract int BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight,
 		                         IntPtr hdcSrc, int nXSrc, int nYSrc, System.Int32 dwRop);

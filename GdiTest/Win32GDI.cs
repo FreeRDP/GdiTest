@@ -45,6 +45,12 @@ namespace GdiTest
 			public static extern IntPtr CreateSolidBrush(int crColor);
 			
 			[DllImport("gdi32")]
+			public static extern IntPtr CreatePatternBrush(IntPtr hbmp);
+			
+			[DllImport("gdi32")]
+			public static extern IntPtr CreateBitmap(int nWidth, int nHeight, uint cPlanes, uint cBitsPerPel, IntPtr lpvBits);
+			
+			[DllImport("gdi32")]
 			public static extern bool Ellipse(IntPtr hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
 			
 			[DllImport("gdi32")]
@@ -197,6 +203,22 @@ namespace GdiTest
 		{
 			if (available)
 				return Callbacks.CreateSolidBrush(crColor);
+			else
+				return (IntPtr) null;
+		}
+		
+		public override IntPtr CreatePatternBrush(IntPtr hbmp)
+		{
+			if (available)
+				return Callbacks.CreatePatternBrush(hbmp);
+			else
+				return (IntPtr) null;
+		}
+		
+		public override IntPtr CreateBitmap(int nWidth, int nHeight, uint cPlanes, uint cBitsPerPel, IntPtr lpvBits)
+		{
+			if (available)
+				return Callbacks.CreateBitmap(nWidth, nHeight, cPlanes, cBitsPerPel, lpvBits);
 			else
 				return (IntPtr) null;
 		}
