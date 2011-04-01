@@ -66,6 +66,7 @@ namespace GdiTest
 		public abstract IntPtr CreatePatternBrush(IntPtr hbmp);
 		public abstract IntPtr CreateBitmap(int nWidth, int nHeight, uint cPlanes, uint cBitsPerPel, IntPtr lpvBits);
 		public abstract bool Ellipse(IntPtr hdc, int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
+		public abstract bool Polygon(IntPtr hdc, POINT [] lpPoints, int nCount);
 		public abstract int BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight,
 		                         IntPtr hdcSrc, int nXSrc, int nYSrc, System.Int32 dwRop);
 	}

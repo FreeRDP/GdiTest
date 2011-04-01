@@ -199,6 +199,14 @@ namespace GdiTest
 				return false;
 		}
 		
+		public override bool Polygon(IntPtr hdc, POINT [] lpPoints, int nCount)
+		{
+			if (available)
+				return Callbacks.Polygon(hdc, lpPoints, nCount);
+			else
+				return false;
+		}
+		
 		public override IntPtr CreateSolidBrush(int crColor)
 		{
 			if (available)
