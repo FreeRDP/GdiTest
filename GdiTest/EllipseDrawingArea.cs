@@ -26,16 +26,31 @@ namespace GdiTest
 					IntPtr hdc = wg.GetHdc();
 					
 					int i = 0;
-					int n = 1;
+					int n = 3;
 					int w = 16;
 					int h = 16;
 					
-					Area[] areas = new Area[n];
+					Rect[] rects = new Rect[n];
 					
-					areas[i].X = 0;
-					areas[i].Y = 0;
-					areas[i].W = w;
-					areas[i].H = h;
+					/* Test Case 1 */
+					rects[i].x1 = 0;
+					rects[i].y1 = 0;
+					rects[i].x2 = w;
+					rects[i].y2 = h;
+					i++;
+					
+					/* Test Case 2 */
+					rects[i].x1 = w * i + 3;
+					rects[i].y1 = 0;
+					rects[i].x2 = w * (i + 1) - 3;
+					rects[i].y2 = h;
+					i++;
+					
+					/* Test Case 3 */
+					rects[i].x1 = w * i;
+					rects[i].y1 = 0 + 3;
+					rects[i].x2 = w * (i + 1);
+					rects[i].y2 = h - 3;
 					i++;
 					
 					/* Fill Area with White */
@@ -50,7 +65,7 @@ namespace GdiTest
 					
 					for (i = 0; i < n; i++)
 					{
-						GDI_Win32.Ellipse(hdc, areas[i].X, areas[i].Y, areas[i].W, areas[i].H);
+						GDI_Win32.Ellipse(hdc, rects[i].x1, rects[i].y1, rects[i].x2, rects[i].y2);
 					
 						dumpText += "unsigned char ellipse_case_" + (i + 1) + "[" + w * h + "] = \n";
 						dumpText += dumpPixelArea(GDI_Win32, hdc, i * w, 0, w, h) + "\n";
