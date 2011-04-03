@@ -37,73 +37,73 @@ namespace GdiTest
 					Point[] startp = new Point[n];
 					Point[] endp = new Point[n];
 					
-					/* Test Case 1 */
+					/* Test Case 1: (0,0) -> (15,15) */
 					areas[i].X = 0;
 					areas[i].Y = 0;
 					areas[i].W = w;
 					areas[i].H = h;
 					startp[i].X = areas[i].X;
 					startp[i].Y = areas[i].Y;
-					endp[i].X =   areas[i].X + w;
-					endp[i].Y =   areas[i].Y + h;
+					endp[i].X =   areas[i].X + w - 1;
+					endp[i].Y =   areas[i].Y + h - 1;
 					i++;
 					
-					/* Test Case 2 */
+					/* Test Case 2: (15,15) -> (0,0) */
 					areas[i].X = areas[i - 1].X + areas[i - 1].W;
 					areas[i].Y = areas[i - 1].Y;
 					areas[i].W = w;
 					areas[i].H = h;
-					startp[i].X = areas[i].X + w;
-					startp[i].Y = areas[i].Y + h;
+					startp[i].X = areas[i].X + w - 1;
+					startp[i].Y = areas[i].Y + h - 1;
 					endp[i].X =   areas[i].X;
 					endp[i].Y =   areas[i].Y;
 					i++;
 					
-					/* Test Case 3 */
+					/* Test Case 3: (15,0) -> (0,15) */
 					areas[i].X = areas[i - 1].X + areas[i - 1].W;
 					areas[i].Y = areas[i - 1].Y;
 					areas[i].W = w;
 					areas[i].H = h;
-					startp[i].X = areas[i].X + w;
+					startp[i].X = areas[i].X + w - 1;
 					startp[i].Y = areas[i].Y;
 					endp[i].X =   areas[i].X;
-					endp[i].Y =   areas[i].Y + h;
+					endp[i].Y =   areas[i].Y + h - 1;
 					i++;
 					
-					/* Test Case 4 */
+					/* Test Case 4: (0,15) -> (15,0) */
 					areas[i].X = areas[i - 1].X + areas[i - 1].W;
 					areas[i].Y = areas[i - 1].Y;
 					areas[i].W = w;
 					areas[i].H = h;
 					startp[i].X = areas[i].X;
-					startp[i].Y = areas[i].Y + h;
-					endp[i].X =   areas[i].X + w;
+					startp[i].Y = areas[i].Y + h - 1;
+					endp[i].X =   areas[i].X + w - 1;
 					endp[i].Y =   areas[i].Y;
 					i++;
 					
-					/* Test Case 5 */
+					/* Test Case 5: (0,8) -> (15,8) */
 					areas[i].X = areas[i - 1].X + areas[i - 1].W;
 					areas[i].Y = areas[i - 1].Y;
 					areas[i].W = w;
 					areas[i].H = h;
 					startp[i].X = areas[i].X;
 					startp[i].Y = areas[i].Y + (h / 2);
-					endp[i].X =   areas[i].X + w;
+					endp[i].X =   areas[i].X + w - 1;
 					endp[i].Y =   areas[i].Y + (h / 2);
 					i++;
 					
-					/* Test Case 6 */
+					/* Test Case 6: (15,8) -> (0,8) */
 					areas[i].X = areas[i - 1].X + areas[i - 1].W;
 					areas[i].Y = areas[i - 1].Y;
 					areas[i].W = w;
 					areas[i].H = h;
-					startp[i].X = areas[i].X + w;
+					startp[i].X = areas[i].X + w - 1;
 					startp[i].Y = areas[i].Y + (h / 2);
 					endp[i].X =   areas[i].X;
 					endp[i].Y =   areas[i].Y + (h / 2);
 					i++;
 					
-					/* Test Case 7 */
+					/* Test Case 7: (8,0) -> (8,15) */
 					areas[i].X = areas[i - 1].X + areas[i - 1].W;
 					areas[i].Y = areas[i - 1].Y;
 					areas[i].W = w;
@@ -111,21 +111,21 @@ namespace GdiTest
 					startp[i].X = areas[i].X + (w / 2);
 					startp[i].Y = areas[i].Y;
 					endp[i].X =   areas[i].X + (w / 2);
-					endp[i].Y =   areas[i].Y + h;
+					endp[i].Y =   areas[i].Y + h - 1;
 					i++;
 					
-					/* Test Case 8 */
+					/* Test Case 8: (8,15) -> (8,0) */
 					areas[i].X = areas[i - 1].X + areas[i - 1].W;
 					areas[i].Y = areas[i - 1].Y;
 					areas[i].W = w;
 					areas[i].H = h;
 					startp[i].X = areas[i].X + (w / 2);
-					startp[i].Y = areas[i].Y + h;
+					startp[i].Y = areas[i].Y + h - 1;
 					endp[i].X =   areas[i].X + (w / 2);
 					endp[i].Y =   areas[i].Y;
 					i++;
 					
-					/* Test Case 9 */
+					/* Test Case 9: (4,4) -> (12,12) */
 					areas[i].X = areas[i - 1].X + areas[i - 1].W;
 					areas[i].Y = areas[i - 1].Y;
 					areas[i].W = w;
@@ -136,7 +136,7 @@ namespace GdiTest
 					endp[i].Y =   areas[i].Y + 3 * (h / 4);
 					i++;
 					
-					/* Test Case 10 */
+					/* Test Case 10: (12,12) -> (4,4) */
 					areas[i].X = areas[i - 1].X + areas[i - 1].W;
 					areas[i].Y = areas[i - 1].Y;
 					areas[i].W = w;
