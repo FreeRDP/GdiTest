@@ -57,6 +57,12 @@ namespace GdiTest
 			public static extern bool Polygon(IntPtr hdc, POINT [] lpPoints, int nCount);
 			
 			[DllImport("gdi32")]
+			public static extern IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
+			
+			[DllImport("gdi32")]
+			public static extern int SelectClipRgn(IntPtr hdc, IntPtr hrgn);
+			
+			[DllImport("gdi32")]
 			public static extern int BitBlt(
 			                                 IntPtr hdcDest,
 			                                 int nXDest,
@@ -205,6 +211,22 @@ namespace GdiTest
 				return Callbacks.Polygon(hdc, lpPoints, nCount);
 			else
 				return false;
+		}
+		
+		public override IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect)
+		{
+			if (available)
+				return Callbacks.CreateRectRgn(nLeftRect, nTopRect, nRightRect, nBottomRect);
+			else
+				return (IntPtr) null;
+		}
+		
+		public override int SelectClipRgn(IntPtr hdc, IntPtr hrgn)
+		{
+			if (available)
+				return Callbacks.SelectClipRgn(hdc, hrgn);
+			else
+				return 0;
 		}
 		
 		public override IntPtr CreateSolidBrush(int crColor)

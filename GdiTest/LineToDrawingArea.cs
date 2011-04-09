@@ -5,13 +5,11 @@ using Gtk;
 namespace GdiTest
 {
 	public class LineToDrawingArea : TestDrawingArea
-	{		
-		private bool rendered;
+	{
 		private String dumpText;
 		
 		public LineToDrawingArea()
 		{
-			rendered = false;
 		}
 		
 		protected override bool OnExposeEvent (Gdk.EventExpose args)
@@ -29,7 +27,7 @@ namespace GdiTest
 					IntPtr hdc = wg.GetHdc();
 					
 					int i = 0;
-					int n = 10;
+					int n = 11;
 					int w = 16;
 					int h = 16;
 					
@@ -147,17 +145,30 @@ namespace GdiTest
 					endp[i].Y =   areas[i].Y + (h / 4);
 					i++;
 					
+					/* Test Case 11: (0,0) -> (+10,+10) */
+					areas[i].X = areas[i - 1].X + areas[i - 1].W;
+					areas[i].Y = areas[i - 1].Y;
+					areas[i].W = w;
+					areas[i].H = h;
+					startp[i].X = areas[i].X;
+					startp[i].Y = areas[i].Y;
+					endp[i].X =   areas[i].X + w + 10;
+					endp[i].Y =   areas[i].Y + h + 10;
+					i++;
+					
 					for (i = 0; i < n; i++)
 					{
-						if (!rendered)
-						{
-							/* Fill Area with White */
-							g.Color = new Color(255,255,255);
-							Rectangle rect = new Rectangle(areas[i].X, areas[i].Y, areas[i].W, areas[i].H);
-							g.Rectangle(rect);
-							g.Fill();
-							g.Stroke();
-						}
+						/* Set Clipping Region */
+						IntPtr clippingRegion = GDI_Win32.CreateRectRgn(areas[i].X, areas[i].Y, areas[i].X + areas[i].W, areas[i].Y + areas[i].H);
+						GDI_Win32.SelectClipRgn(hdc, IntPtr.Zero);
+						GDI_Win32.SelectClipRgn(hdc, clippingRegion);
+							
+						/* Fill Area with White */
+						g.Color = new Color(255,255,255);
+						Rectangle rect = new Rectangle(areas[i].X, areas[i].Y, areas[i].W, areas[i].H);
+						g.Rectangle(rect);
+						g.Fill();
+						g.Stroke();
 							
 						/* Render Test Case */
 						IntPtr pen = GDI_Win32.CreatePen(1, 1, 0);

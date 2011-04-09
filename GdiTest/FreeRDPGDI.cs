@@ -132,6 +132,16 @@ namespace GdiTest
 			return false;
 		}
 		
+		public override IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect)
+		{
+			return (IntPtr) null;
+		}
+		
+		public override int SelectClipRgn(IntPtr hdc, IntPtr hrgn)
+		{
+			return 0;
+		}
+		
 		public override int BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight,
 		                                 IntPtr hdcSrc, int nXSrc, int nYSrc, System.Int32 dwRop)
 		{
