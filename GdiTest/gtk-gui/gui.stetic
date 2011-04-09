@@ -92,12 +92,7 @@
           <widget class="Gtk.ComboBox" id="testComboBox">
             <property name="MemberName" />
             <property name="IsTextCombo">True</property>
-            <property name="Items" translatable="yes">BitBlt
-LineTo
-PolylineTo
-Ellipse
-Polygon</property>
-            <property name="Active">0</property>
+            <property name="Items" translatable="yes" />
             <signal name="Changed" handler="OnTestComboBoxChanged" />
           </widget>
           <packing>

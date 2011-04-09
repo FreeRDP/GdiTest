@@ -71,13 +71,7 @@ public partial class MainWindow
 		w4.Y = 30;
 		// Container child mainFixedContainer.Gtk.Fixed+FixedChild
 		this.testComboBox = global::Gtk.ComboBox.NewText ();
-		this.testComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("BitBlt"));
-		this.testComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("LineTo"));
-		this.testComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("PolylineTo"));
-		this.testComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("Ellipse"));
-		this.testComboBox.AppendText (global::Mono.Unix.Catalog.GetString ("Polygon"));
 		this.testComboBox.Name = "testComboBox";
-		this.testComboBox.Active = 0;
 		this.mainFixedContainer.Add (this.testComboBox);
 		global::Gtk.Fixed.FixedChild w5 = ((global::Gtk.Fixed.FixedChild)(this.mainFixedContainer[this.testComboBox]));
 		w5.X = 79;

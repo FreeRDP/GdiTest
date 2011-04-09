@@ -142,9 +142,9 @@ namespace GdiTest
 					areas[i].W = w;
 					areas[i].H = h;
 					startp[i].X = areas[i].X + 3 * (w / 4);
-					startp[i].Y = areas[i].Y + (h / 4);
+					startp[i].Y = areas[i].Y + 3 * (h / 4);
 					endp[i].X =   areas[i].X + (w / 4);
-					endp[i].Y =   areas[i].Y + 3 * (h / 4);
+					endp[i].Y =   areas[i].Y + (h / 4);
 					i++;
 					
 					for (i = 0; i < n; i++)
