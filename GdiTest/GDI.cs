@@ -45,6 +45,24 @@ namespace GdiTest
 		public static System.Int32 WHITENESS =		0x00FF0062; /* D = 1 */
 		public static System.Int32 DSPDxax =		0x00E20746; /* D = (S & P) | (~S & D) */
 		public static System.Int32 SPna =			0x000C0324;	/* D = S & ~P */
+		public static System.Int32 DSna =			0x00220326; /* D = D & ~S */
+		
+		public static System.Int32 R2_BLACK = 1;
+		public static System.Int32 R2_NOTMERGEPEN = 2;
+		public static System.Int32 R2_MASKNOTPEN = 3;
+		public static System.Int32 R2_NOTCOPYPEN = 4;
+		public static System.Int32 R2_MASKPENNOT = 5;
+		public static System.Int32 R2_NOT = 6;
+		public static System.Int32 R2_XORPEN = 7;
+		public static System.Int32 R2_NOTMASKPEN = 8;
+		public static System.Int32 R2_MASKPEN = 9;
+		public static System.Int32 R2_NOTXORPEN = 10;
+		public static System.Int32 R2_NOP = 11;
+		public static System.Int32 R2_MERGENOTPEN = 12;
+		public static System.Int32 R2_COPYPEN = 13;
+		public static System.Int32 R2_MERGEPENNOT = 14;
+		public static System.Int32 R2_MERGEPEN = 15;
+		public static System.Int32 R2_WHITE = 16;
 		
 		public GDI ()
 		{
@@ -69,6 +87,7 @@ namespace GdiTest
 		public abstract bool Polygon(IntPtr hdc, POINT [] lpPoints, int nCount);
 		public abstract IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
 		public abstract int SelectClipRgn(IntPtr hdc, IntPtr hrgn);
+		public abstract int SetROP2(IntPtr hdc, int fnDrawMode);
 		public abstract int BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight,
 		                         IntPtr hdcSrc, int nXSrc, int nYSrc, System.Int32 dwRop);
 	}

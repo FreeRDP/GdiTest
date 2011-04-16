@@ -63,6 +63,9 @@ namespace GdiTest
 			public static extern int SelectClipRgn(IntPtr hdc, IntPtr hrgn);
 			
 			[DllImport("gdi32")]
+			public static extern int SetROP2(IntPtr hdc, int fnDrawMode);
+
+			[DllImport("gdi32")]
 			public static extern int BitBlt(
 			                                 IntPtr hdcDest,
 			                                 int nXDest,
@@ -251,6 +254,14 @@ namespace GdiTest
 				return Callbacks.CreateBitmap(nWidth, nHeight, cPlanes, cBitsPerPel, lpvBits);
 			else
 				return (IntPtr) null;
+		}
+		
+		public override int SetROP2(IntPtr hdc, int fnDrawMode)
+		{
+			if (available)
+				return Callbacks.SetROP2(hdc, fnDrawMode);
+			else
+				return 0;
 		}
 		
 		public override int BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight,

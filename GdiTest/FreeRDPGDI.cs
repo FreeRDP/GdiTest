@@ -142,6 +142,11 @@ namespace GdiTest
 			return 0;
 		}
 		
+		public override int SetROP2(IntPtr hdc, int fnDrawMode)
+		{
+			return 0;
+		}
+		
 		public override int BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight,
 		                                 IntPtr hdcSrc, int nXSrc, int nYSrc, System.Int32 dwRop)
 		{

@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="GdiTest\LineToDrawingArea.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="GdiTest\EllipseDrawingArea.cs">
     <Files>
       <File FileName="GdiTest\MainWindow.cs" Line="24" Column="34" />
-      <File FileName="GdiTest\LineToDrawingArea.cs" Line="35" Column="36" />
       <File FileName="GdiTest\GDI.cs" Line="71" Column="2" />
       <File FileName="GdiTest\Win32GDI.cs" Line="211" Column="53" />
       <File FileName="GdiTest\FreeRDPGDI.cs" Line="142" Column="13" />
+      <File FileName="GdiTest\EllipseDrawingArea.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
