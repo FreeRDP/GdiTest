@@ -170,7 +170,7 @@ namespace GdiTest
 					rop2[i - k + 1] = GDI.R2_BLACK;
 					i++;
 					
-					/* Test Case 13: (0,0) -> (16,16), R2_MERGENOTPEN */
+					/* Test Case 13: (0,0) -> (16,16), R2_NOTMERGEPEN */
 					areas[i].X = areas[i - 1].X + areas[i - 1].W;
 					areas[i].Y = areas[i - 1].Y;
 					areas[i].W = w;
@@ -179,7 +179,7 @@ namespace GdiTest
 					startp[i].Y = areas[i].Y;
 					endp[i].X =   areas[i].X + w;
 					endp[i].Y =   areas[i].Y + h;
-					rop2[i - k + 1] = GDI.R2_MERGENOTPEN;
+					rop2[i - k + 1] = GDI.R2_NOTMERGEPEN;
 					i++;
 					
 					/* Test Case 14: (0,0) -> (16,16), R2_MASKNOTPEN */
@@ -390,7 +390,7 @@ namespace GdiTest
 							
 						/* Render Test Case */
 						GDI_Win32.SetROP2(hdc, rop2[i - k + 1]);
-						IntPtr pen = GDI_Win32.CreatePen(1, 1, 0);
+						IntPtr pen = GDI_Win32.CreatePen(1, 1, 0xFFFFFF);
 						IntPtr oldPen = GDI_Win32.SelectObject(hdc, pen);
 						GDI_Win32.MoveToEx(hdc, startp[i].X, startp[i].Y, IntPtr.Zero);
 						GDI_Win32.LineTo(hdc, endp[i].X, endp[i].Y);
